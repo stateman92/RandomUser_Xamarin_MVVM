@@ -1,19 +1,17 @@
-﻿using System;
-
+﻿using Realms;
 using Newtonsoft.Json;
-using Realms;
 
 namespace RandomUser_Xamarin_MVVM.Models
 {
     public class Picture : RealmObject
     {
         [JsonProperty("large")]
-        public String Large { get; set; }
+        public string Large { get; set; }
 
         [JsonProperty("medium")]
-        public String Medium { get; set; }
+        public string Medium { get; set; }
 
         [JsonProperty("thumbnail")]
-        public String Thumbnail { get; set; }
+        public string Thumbnail { get; set; }
     }
 }

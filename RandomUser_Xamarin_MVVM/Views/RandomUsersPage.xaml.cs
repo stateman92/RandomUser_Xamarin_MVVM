@@ -25,6 +25,12 @@ namespace RandomUser_Xamarin_MVVM.Views
             BindingContext = new RandomUsersViewModel(new ApiCommunicationService(), new RandomUsersService());
         }
 
+        /// <summary>
+        /// After the Button on the Toolbar is clicked, scroll to the top.
+        /// </summary>
+        /// <remarks>
+        /// It's clearly the UI layer's job.
+        /// </remarks>
         void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             var users = ((RandomUsersViewModel)BindingContext).Users;
@@ -34,6 +40,12 @@ namespace RandomUser_Xamarin_MVVM.Views
             }
         }
 
+        /// <summary>
+        /// If a row is selected, move to the next page.
+        /// </summary>
+        /// <remarks>
+        /// It's clearly the UI layer's job.
+        /// </remarks>
         async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem != null)
@@ -48,6 +60,12 @@ namespace RandomUser_Xamarin_MVVM.Views
             }
         }
 
+        /// <summary>
+        /// Make the background image a little bit blurry.
+        /// </summary>
+        /// <remarks>
+        /// It's clearly the UI layer's job.
+        /// </remarks>
         void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
         {
             var surface = args.Surface;

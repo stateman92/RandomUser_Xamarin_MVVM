@@ -138,5 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\loading.json" />
+    <BundleResource Include="Resources\background.jpg" />
   </ItemGroup>
 </Project>

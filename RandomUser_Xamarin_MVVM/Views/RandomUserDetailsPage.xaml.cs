@@ -14,26 +14,13 @@ namespace RandomUser_Xamarin_MVVM.Views
         {
             InitializeComponent();
         }
-        /*
-        void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
-        {
-            var surface = args.Surface;
-            var canvas = surface.Canvas;
 
-            var snap = surface.Snapshot();
-
-            Stream fileStream = File.OpenRead("background.jpg");
-
-            canvas.DrawColor(SKColors.Black);
-
-            using var stream = new SKManagedStream(fileStream);
-            using var bitmap = SKBitmap.Decode(stream);
-            using var paint = new SKPaint();
-            using var filter = SKImageFilter.CreateBlur(10, 10);
-            paint.ImageFilter = filter;
-            canvas.DrawBitmap(bitmap, SKRect.Create(snap.Width, snap.Height), paint);
-        }*/
-
+        /// <summary>
+        /// Make the background image a little bit blurry.
+        /// </summary>
+        /// <remarks>
+        /// It's clearly the UI layer's job.
+        /// </remarks>
         void OnCanvasViewPaintSurface(object sender, SKPaintSurfaceEventArgs args)
         {
             var surface = args.Surface;

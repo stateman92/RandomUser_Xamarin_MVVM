@@ -17,6 +17,7 @@ namespace RandomUser_Xamarin_MVVM.Droid
 
             base.OnCreate(savedInstanceState);
 
+            // Neccessary to call in every target in order to the functionality of the library "FFImageLoading".
             CachedImageRenderer.Init(true);
             CachedImageRenderer.InitImageViewHandler();
 

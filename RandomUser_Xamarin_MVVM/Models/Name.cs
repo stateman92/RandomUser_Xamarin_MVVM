@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using Realms;
+﻿using Realms;
+using Newtonsoft.Json;
 
 namespace RandomUser_Xamarin_MVVM.Models
 {
