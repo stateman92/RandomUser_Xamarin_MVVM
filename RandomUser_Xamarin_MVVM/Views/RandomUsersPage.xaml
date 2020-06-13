@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RandomUser_Xamarin_MVVM.Views.RandomUsersPage"
+             Title="Random Users"
+             xmlns:controls="clr-namespace:RandomUser_Xamarin_MVVM.Views"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Top" Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem Text="{Binding NumberOfDistinctUsers}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <RelativeLayout Padding="0">
+
+            <skiaforms:SKCanvasView RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                                    PaintSurface="OnCanvasViewPaintSurface"/>
+
+            <controls:LazyLoadingListView x:Name="listView"
+                                          ItemsSource="{Binding Users}"
+                                          LoadMoreCommand="{Binding LoadMoreItemsCommand}"
+                                          BackgroundColor="Transparent"
+                                          HasUnevenRows="True"
+                                          ItemSelected="ListView_ItemSelected"
+                                          IsPullToRefreshEnabled="True"
+                                          RefreshCommand="{Binding RefreshCommand}"
+                                          IsRefreshing="{Binding IsRefreshing, Mode=OneWay}">
+                <ListView.ItemTemplate BackgroundColor="Transparent">
+                    <DataTemplate>
+                        <ViewCell Height="125">
+                            <Grid BackgroundColor="Transparent"
+                                  VerticalOptions="FillAndExpand"
+                                  HorizontalOptions="FillAndExpand"
+                                  Padding="10, 0, 0, 0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="3*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ffimageloading:CachedImage Aspect="AspectFit"
+                                                            Source="{Binding Picture.Medium}"
+                                                            Grid.Column="0"
+                                                            HeightRequest="125"
+                                                            WidthRequest="125"
+                                                            sharedTransitions:Transition.Name="image"
+                                                            sharedTransitions:Transition.Group="{Binding FullName}"/>
+                                <Label Text="{Binding FullName}"
+                                       TextColor="White"
+                                       Grid.Column="1"
+                                       HeightRequest="125"
+                                       VerticalOptions="FillAndExpand"
+                                       VerticalTextAlignment="Center"
+                                       Padding="20"
+                                       FontSize="Large"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </controls:LazyLoadingListView>
+
+
+            <forms:AnimationView x:Name="AnimationView"
+                         Animation="loading.json"
+                         Loop="True"
+                         AutoPlay="True"
+                         IsVisible="{Binding IsRefreshing}"
+                         WidthRequest="100"
+                         HeightRequest="100"
+                         RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand"/>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

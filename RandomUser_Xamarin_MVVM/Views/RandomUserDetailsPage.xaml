@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RandomUser_Xamarin_MVVM.Views.RandomUserDetailsPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:skiaforms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions">
+
+    <ContentPage.Content>
+
+        <RelativeLayout VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+            <skiaforms:SKCanvasView RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                                    RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                                    PaintSurface="OnCanvasViewPaintSurface"/>
+
+            <Grid RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                  RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                  Padding="10">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <ffimageloading:CachedImage Aspect="AspectFit"
+                                            Source="{Binding Picture.Large}"
+                                            Grid.Row="0"
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand"
+                                            sharedTransitions:Transition.Name="image"/>
+                <Label Text="{Binding Accessibilities}"
+                       Grid.Row="1"
+                       TextColor="White"
+                       FontSize="Large"/>
+                <Label Text="{Binding ExpandedLocation}"
+                       Grid.Row="2"
+                       TextColor="White"
+                       FontSize="Large"/>
+            </Grid>
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>
